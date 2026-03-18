@@ -56,6 +56,12 @@ NEO4J_DATABASE='neo4j' \
 bash scripts/load_data_graph.sh
 ```
 
+Build compact q1 helper relationships once after loading graph data:
+
+```bash
+venv/bin/python scripts/build_graph_q1_helpers.py
+```
+
 Notes:
 - Graph loader script: `scripts/load_data_graph.sh`
 - Graph template Cypher file: `scripts/load_data_graph.cypherl`
@@ -90,6 +96,12 @@ venv/bin/python scripts/analyze_psql.py
 venv/bin/python scripts/analyze_mongodb.py
 venv/bin/python scripts/analyze_graph.py
 venv/bin/python scripts/build_analysis_summary.py
+```
+
+If graph q1 helpers are missing, build them first:
+
+```bash
+venv/bin/python scripts/build_graph_q1_helpers.py
 ```
 
 For Mongo progress heartbeat logs every 20 seconds:
@@ -200,46 +212,4 @@ with d.session(database="neo4j") as s:
     print(s.run("RETURN 1 AS ok").single()["ok"])
 d.close()
 PY
-```
-
-## 7) Common Issues
-
-### MongoDB connection refused (`localhost:27017`)
-- MongoDB is not running, or not reachable from WSL.
-- Start MongoDB service/container, or use a valid `MONGO_URI` host.
-
-### No new output for a long time
-- Some queries (especially Mongo `q1`) are heavy on full dataset.
-- Use unbuffered output and heartbeat logs:
-
-```bash
-PYTHONUNBUFFERED=1 MONGO_PROGRESS_SECONDS=20 venv/bin/python -u scripts/analyze_mongodb.py
-```
-
-### Neo4j memory issues during load
-- Lower batch sizes in `load_data_graph.sh` environment variables, for example:
-
-```bash
-DELETE_REL_BATCH_SIZE=2000 DELETE_BATCH_SIZE=500 EVENT_BATCH_SIZE=25 MESSAGE_BATCH_SIZE=10 bash scripts/load_data_graph.sh
-```
-
-### Neo4j `Unable to connect to localhost:7687` in WSL
-- Confirm Neo4j is actually running and listening:
-
-```bash
-docker ps -a --filter "name=neo4j_server"
-docker inspect neo4j_server --format '{{.State.Status}} exit={{.State.ExitCode}} oom={{.State.OOMKilled}}'
-```
-
-- If the container is stopped, restart it:
-
-```bash
-docker start neo4j_server
-docker logs --tail 100 neo4j_server
-```
-
-- If Neo4j is running on Windows host (not inside WSL), use:
-
-```bash
-NEO4J_URI='bolt://host.docker.internal:7687' bash scripts/load_data_graph.sh
 ```

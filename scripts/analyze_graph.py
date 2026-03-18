@@ -12,7 +12,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
-from neo4j import GraphDatabase
+from neo4j import GraphDatabase, Query
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -37,8 +37,20 @@ def read_query(query_name: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def run_cypher(session: Any, query_text: str, params: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-    result = session.run(query_text, params or {})
+def log(message: str) -> None:
+    print(message, flush=True)
+
+
+def run_cypher(
+    session: Any,
+    query_text: str,
+    params: dict[str, Any] | None = None,
+    query_timeout_ms: int | None = None,
+) -> list[dict[str, Any]]:
+    query: str | Query = query_text
+    if query_timeout_ms and query_timeout_ms > 0:
+        query = Query(query_text, timeout=query_timeout_ms / 1000.0)
+    result = session.run(query, params or {})
     return [record.data() for record in result]
 
 
@@ -52,7 +64,7 @@ def build_keywords_from_q2(q2_rows: list[dict[str, Any]], top_n: int = 3) -> lis
     return [token for token, _ in counter.most_common(top_n)]
 
 
-def run_q3(session: Any, keywords: list[str]) -> list[dict[str, Any]]:
+def run_q3(session: Any, keywords: list[str], query_timeout_ms: int | None = None) -> list[dict[str, Any]]:
     if not keywords:
         return []
 
@@ -78,14 +90,26 @@ def run_q3(session: Any, keywords: list[str]) -> list[dict[str, Any]]:
             "ORDER BY text_score DESC, product_id LIMIT 20"
         )
         try:
+            fulltext_returned_rows = False
             for keyword in keywords:
-                rows = run_cypher(session, fulltext_query, {"keyword": keyword})
+                rows = run_cypher(
+                    session,
+                    fulltext_query,
+                    {"keyword": keyword},
+                    query_timeout_ms=query_timeout_ms,
+                )
+                if rows:
+                    fulltext_returned_rows = True
                 for row in rows:
                     key = (row["keyword"], str(row["product_id"]))
                     if key in seen:
                         continue
                     seen.add(key)
                     results.append(row)
+            if not fulltext_returned_rows:
+                fulltext_supported = False
+                results.clear()
+                seen.clear()
         except Exception:
             fulltext_supported = False
             results.clear()
@@ -100,7 +124,12 @@ def run_q3(session: Any, keywords: list[str]) -> list[dict[str, Any]]:
             "ORDER BY product_id LIMIT 20"
         )
         for keyword in keywords:
-            rows = run_cypher(session, fallback_query, {"keyword": keyword})
+            rows = run_cypher(
+                session,
+                fallback_query,
+                {"keyword": keyword},
+                query_timeout_ms=query_timeout_ms,
+            )
             for row in rows:
                 key = (row["keyword"], str(row["product_id"]))
                 if key in seen:
@@ -112,17 +141,38 @@ def run_q3(session: Any, keywords: list[str]) -> list[dict[str, Any]]:
     return results
 
 
+def ensure_q1_helpers(session: Any, query_timeout_ms: int | None = None) -> None:
+    helper_check_query = """
+    CALL () {
+      MATCH (c:Campaign)
+      RETURN count(c) AS campaign_count
+    }
+    CALL () {
+      MATCH ()-[r:RECEIVED_CAMPAIGN]->()
+      RETURN count(r) AS received_helper_count
+    }
+    RETURN campaign_count, received_helper_count
+    """
+    row = run_cypher(session, helper_check_query, query_timeout_ms=query_timeout_ms)[0]
+    if row["campaign_count"] > 0 and row["received_helper_count"] == 0:
+        raise RuntimeError(
+            "Q1 helper relationships are missing. Run "
+            "'venv/bin/python scripts/build_graph_q1_helpers.py' "
+            "before running graph analysis."
+        )
+
+
 def time_query(name: str, fn: Any) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    log(f"\n[{name}] Starting...")
     started = time.perf_counter()
     rows = fn()
     elapsed = time.perf_counter() - started
-    print(f"\n[{name}]")
-    print(f"Execution time: {elapsed:.4f} sec")
-    print(f"Rows returned : {len(rows)}")
+    log(f"[{name}] Execution time: {elapsed:.4f} sec")
+    log(f"[{name}] Rows returned : {len(rows)}")
     preview = rows[:5]
     if preview:
-        print("Preview:")
-        print(json.dumps(to_jsonable(preview), indent=2, ensure_ascii=True))
+        log(f"[{name}] Preview:")
+        log(json.dumps(to_jsonable(preview), indent=2, ensure_ascii=True))
     return (
         {
             "execution_time_sec": elapsed,
@@ -138,24 +188,39 @@ def main() -> None:
     user = os.getenv("NEO4J_USER", "neo4j")
     password = os.getenv("NEO4J_PASSWORD", "neo4jneo4j")
     database = os.getenv("NEO4J_DATABASE", "neo4j")
+    query_timeout_ms = int(os.getenv("NEO4J_QUERY_TIMEOUT_MS", "0"))
 
-    print("Running Graph analysis")
-    print(f"DB: {database} @ {uri} as {user}")
+    log("Running Graph analysis")
+    log(f"DB: {database} @ {uri} as {user}")
+    if query_timeout_ms > 0:
+        log(f"Query timeout: {query_timeout_ms} ms")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     driver = GraphDatabase.driver(uri, auth=(user, password))
     try:
+        log("Checking graph connectivity...")
+        driver.verify_connectivity()
         with driver.session(database=database) as session:
             q1_query = read_query("q1")
             q2_query = read_query("q2")
+            ensure_q1_helpers(session, query_timeout_ms=query_timeout_ms)
 
-            q1_result, _ = time_query("q1", lambda: run_cypher(session, q1_query))
-            q2_result, q2_rows = time_query("q2", lambda: run_cypher(session, q2_query))
+            q1_result, _ = time_query(
+                "q1",
+                lambda: run_cypher(session, q1_query, query_timeout_ms=query_timeout_ms),
+            )
+            q2_result, q2_rows = time_query(
+                "q2",
+                lambda: run_cypher(session, q2_query, query_timeout_ms=query_timeout_ms),
+            )
 
             keywords = build_keywords_from_q2(q2_rows)
-            print(f"\n[q3] Keywords from q2 products: {keywords}")
-            q3_result, _ = time_query("q3", lambda: run_q3(session, keywords))
+            log(f"\n[q3] Keywords from q2 products: {keywords}")
+            q3_result, _ = time_query(
+                "q3",
+                lambda: run_q3(session, keywords, query_timeout_ms=query_timeout_ms),
+            )
 
         output_payload = {
             "database": "neo4j_or_memgraph",
@@ -172,7 +237,7 @@ def main() -> None:
         }
         out_path = OUTPUT_DIR / "analysis_graph.json"
         out_path.write_text(json.dumps(output_payload, indent=2, ensure_ascii=True), encoding="utf-8")
-        print(f"\nSaved: {out_path}")
+        log(f"\nSaved: {out_path}")
     finally:
         driver.close()
 

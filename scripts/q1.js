@@ -1,5 +1,4 @@
 // Q1 (MongoDB): Check campaign conversion and social support.
-// Run inside mongosh after selecting the target DB.
 db.messages.aggregate([
   {
     $lookup: {
