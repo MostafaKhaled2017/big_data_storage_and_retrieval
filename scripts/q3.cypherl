@@ -1,0 +1,43 @@
+// Q3: Full-text search on category_code for products from Q2 result.
+CREATE FULLTEXT INDEX category_code_fulltext IF NOT EXISTS
+FOR (c:Category)
+ON EACH [c.category_code];
+
+MATCH (u:User)-[r:VIEWED|CARTED|PURCHASED]->(:Product)
+WITH u, count(r) AS activity
+ORDER BY activity DESC
+LIMIT 100
+WITH collect(u.user_id) AS target_users
+MATCH (tu:User)-[:FRIEND_OF]-(f:User)-[rel:VIEWED|CARTED|PURCHASED]->(p:Product)
+WHERE tu.user_id IN target_users
+  AND NOT EXISTS { MATCH (tu)-[:VIEWED|CARTED|PURCHASED]->(p) }
+WITH tu, p,
+     sum(
+       CASE type(rel)
+         WHEN 'PURCHASED' THEN 3
+         WHEN 'CARTED' THEN 2
+         ELSE 1
+       END
+     ) AS weighted_score,
+     count(rel) AS interactions
+ORDER BY tu.user_id, weighted_score DESC, interactions DESC, p.product_id
+WITH tu, collect(p)[0..5] AS top_products
+UNWIND top_products AS tp
+MATCH (tp)-[:IN_CATEGORY]->(cat:Category)
+WITH split(toLower(cat.category_code), '.') AS parts
+UNWIND parts AS keyword
+WITH keyword
+WHERE size(keyword) > 2
+WITH keyword, count(*) AS frequency
+ORDER BY frequency DESC, keyword
+LIMIT 3
+CALL db.index.fulltext.queryNodes('category_code_fulltext', keyword) YIELD node, score
+MATCH (p:Product)-[:IN_CATEGORY]->(node)
+RETURN
+  keyword,
+  p.product_id AS product_id,
+  node.category_code AS category_code,
+  p.brand AS brand,
+  score AS text_score
+ORDER BY keyword, text_score DESC, product_id
+LIMIT 60;

@@ -1,0 +1,39 @@
+// Q2: Personalized top products per user based on friends behavior.
+MATCH (u:User)-[r:VIEWED|CARTED|PURCHASED]->(:Product)
+WITH u, count(r) AS activity
+ORDER BY activity DESC
+LIMIT 100
+WITH collect(u.user_id) AS target_users
+MATCH (tu:User)-[:FRIEND_OF]-(f:User)-[rel:VIEWED|CARTED|PURCHASED]->(p:Product)
+WHERE tu.user_id IN target_users
+  AND NOT EXISTS { MATCH (tu)-[:VIEWED|CARTED|PURCHASED]->(p) }
+WITH tu, p,
+     sum(
+       CASE type(rel)
+         WHEN 'PURCHASED' THEN 3
+         WHEN 'CARTED' THEN 2
+         ELSE 1
+       END
+     ) AS weighted_score,
+     count(rel) AS interactions
+ORDER BY tu.user_id, weighted_score DESC, interactions DESC, p.product_id
+WITH tu,
+     collect({
+       product_id: p.product_id,
+       weighted_score: weighted_score,
+       interactions: interactions,
+       category_code: head([(p)-[:IN_CATEGORY]->(cat:Category) | cat.category_code]),
+       brand: p.brand
+     }) AS recs
+UNWIND range(0, size(recs) - 1) AS idx
+WITH tu, recs[idx] AS rec, idx
+WHERE idx < 5
+RETURN
+  tu.user_id AS target_user_id,
+  rec.product_id AS product_id,
+  rec.weighted_score AS weighted_score,
+  rec.interactions AS interactions,
+  rec.category_code AS category_code,
+  rec.brand AS brand,
+  idx + 1 AS rank_in_user
+ORDER BY target_user_id, rank_in_user;

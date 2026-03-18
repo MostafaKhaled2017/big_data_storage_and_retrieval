@@ -1,0 +1,24 @@
+// Q1: Check if campaigns attracted purchases, with social support signal.
+MATCH (u:User)-[:HAS_CLIENT]->(:Client)-[:RECEIVED]->(m:Message)-[:BELONGS_TO]->(c:Campaign)
+WITH c, u, max(CASE WHEN coalesce(m.is_purchased, false) THEN 1 ELSE 0 END) AS did_purchase
+WITH c, u, did_purchase,
+     EXISTS {
+       MATCH (u)-[:FRIEND_OF]-(f:User)-[:HAS_CLIENT]->(:Client)-[:RECEIVED]->(fm:Message)-[:BELONGS_TO]->(c)
+       WHERE coalesce(fm.is_purchased, false) = true
+     } AS has_friend_purchased
+RETURN
+  c.campaign_id AS campaign_id,
+  c.campaign_type AS message_type,
+  c.channel AS channel,
+  c.topic AS topic,
+  count(*) AS recipients,
+  sum(did_purchase) AS purchasers,
+  round(100.0 * toFloat(sum(did_purchase)) / toFloat(count(*)), 2) AS conversion_rate_pct,
+  sum(CASE WHEN did_purchase = 1 AND has_friend_purchased THEN 1 ELSE 0 END) AS social_purchasers,
+  round(
+    100.0 * toFloat(sum(CASE WHEN did_purchase = 1 AND has_friend_purchased THEN 1 ELSE 0 END))
+    / toFloat(CASE WHEN sum(did_purchase) = 0 THEN 1 ELSE sum(did_purchase) END),
+    2
+  ) AS social_support_share_pct
+ORDER BY conversion_rate_pct DESC, purchasers DESC
+LIMIT 20;

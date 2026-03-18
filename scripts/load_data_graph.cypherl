@@ -1,0 +1,217 @@
+// Template variables are replaced by scripts/load_data_graph.sh:
+//   __CAMPAIGNS_URI__
+//   __CLIENTS_URI__
+//   __EVENTS_URI__
+//   __MESSAGES_URI__
+//   __FRIENDS_URI__
+//   __MESSAGES_USERS_URI__
+//   __FRIENDS_USERS_URI__
+//   __MESSAGES_CLIENTS_URI__
+//   __EVENTS_USERS_URI__
+//   __EVENTS_PRODUCTS_URI__
+//   __EVENTS_CATEGORIES_URI__
+//   __EVENTS_PRODUCT_CATEGORIES_URI__
+
+// Cleanup happens in scripts/load_data_graph.sh before this template runs.
+// Keep constraints across reruns; reload data into the default database.
+CREATE CONSTRAINT user_user_id_unique IF NOT EXISTS
+FOR (u:User) REQUIRE u.user_id IS UNIQUE;
+
+CREATE CONSTRAINT client_client_id_unique IF NOT EXISTS
+FOR (c:Client) REQUIRE c.client_id IS UNIQUE;
+
+CREATE CONSTRAINT campaign_campaign_key_unique IF NOT EXISTS
+FOR (c:Campaign) REQUIRE c.campaign_key IS UNIQUE;
+
+CREATE CONSTRAINT message_message_id_unique IF NOT EXISTS
+FOR (m:Message) REQUIRE m.message_id IS UNIQUE;
+
+CREATE CONSTRAINT product_product_id_unique IF NOT EXISTS
+FOR (p:Product) REQUIRE p.product_id IS UNIQUE;
+
+CREATE CONSTRAINT category_category_id_unique IF NOT EXISTS
+FOR (c:Category) REQUIRE c.category_id IS UNIQUE;
+
+// 1) Users from all sources.
+CALL {
+  LOAD CSV WITH HEADERS FROM '__CLIENTS_URI__' AS row
+  WITH trim(coalesce(row.user_id, '')) AS user_id
+  WHERE user_id <> ''
+  MERGE (u:User {user_id: user_id})
+  ON CREATE SET u.has_first_purchase = false
+} IN TRANSACTIONS OF __CLIENT_BATCH_SIZE__ ROWS;
+
+CALL {
+  LOAD CSV WITH HEADERS FROM '__EVENTS_USERS_URI__' AS row
+  WITH trim(coalesce(row.user_id, '')) AS user_id
+  WHERE user_id <> ''
+  MERGE (u:User {user_id: user_id})
+  ON CREATE SET u.has_first_purchase = false
+} IN TRANSACTIONS OF __USER_EVENT_BATCH_SIZE__ ROWS;
+
+CALL {
+  LOAD CSV WITH HEADERS FROM '__MESSAGES_USERS_URI__' AS row
+  WITH trim(coalesce(row.user_id, '')) AS user_id
+  WHERE user_id <> ''
+  MERGE (u:User {user_id: user_id})
+  ON CREATE SET u.has_first_purchase = false
+} IN TRANSACTIONS OF __USER_MESSAGE_BATCH_SIZE__ ROWS;
+
+CALL {
+  LOAD CSV WITH HEADERS FROM '__FRIENDS_USERS_URI__' AS row
+  WITH trim(coalesce(row.user_id, '')) AS user_id
+  WHERE user_id <> ''
+  MERGE (u:User {user_id: user_id})
+  ON CREATE SET u.has_first_purchase = false
+} IN TRANSACTIONS OF __USER_FRIEND_BATCH_SIZE__ ROWS;
+
+// 2) Clients and (:User)-[:HAS_CLIENT]->(:Client).
+CALL {
+  LOAD CSV WITH HEADERS FROM '__CLIENTS_URI__' AS row
+  WITH
+    trim(coalesce(row.client_id, '')) AS client_id,
+    trim(coalesce(row.user_id, '')) AS user_id,
+    trim(coalesce(row.user_device_id, '')) AS user_device_id_raw,
+    trim(coalesce(row.first_purchase_date, '')) AS first_purchase_date_raw
+  WHERE client_id <> ''
+  MERGE (c:Client {client_id: client_id})
+  SET c.user_device_id = CASE
+      WHEN user_device_id_raw = '' THEN c.user_device_id
+      ELSE toInteger(user_device_id_raw)
+    END,
+      c.first_purchase_date = CASE
+      WHEN first_purchase_date_raw = '' THEN c.first_purchase_date
+      WHEN c.first_purchase_date IS NULL THEN date(first_purchase_date_raw)
+      WHEN date(first_purchase_date_raw) < c.first_purchase_date THEN date(first_purchase_date_raw)
+      ELSE c.first_purchase_date
+    END
+  FOREACH (_ IN CASE WHEN user_id <> '' THEN [1] ELSE [] END |
+    MERGE (u:User {user_id: user_id})
+    ON CREATE SET u.has_first_purchase = false
+    MERGE (u)-[:HAS_CLIENT]->(c)
+    FOREACH (_ IN CASE WHEN first_purchase_date_raw <> '' THEN [1] ELSE [] END |
+      SET u.first_purchase_date = CASE
+          WHEN u.first_purchase_date IS NULL THEN date(first_purchase_date_raw)
+          WHEN date(first_purchase_date_raw) < u.first_purchase_date THEN date(first_purchase_date_raw)
+          ELSE u.first_purchase_date
+        END,
+          u.has_first_purchase = true
+    )
+  )
+} IN TRANSACTIONS OF __CLIENT_BATCH_SIZE__ ROWS;
+
+// 3) Campaigns.
+CALL {
+  LOAD CSV WITH HEADERS FROM '__CAMPAIGNS_URI__' AS row
+  WITH
+    trim(coalesce(row.id, '')) AS campaign_id_raw,
+    trim(coalesce(row.campaign_type, '')) AS campaign_type,
+    trim(coalesce(row.channel, '')) AS channel,
+    trim(coalesce(row.topic, '')) AS topic,
+    trim(coalesce(row.started_at, '')) AS started_at_raw,
+    trim(coalesce(row.finished_at, '')) AS finished_at_raw,
+    trim(coalesce(row.total_count, '')) AS total_count_raw,
+    trim(coalesce(row.ab_test, '')) AS ab_test_raw,
+    trim(coalesce(row.warmup_mode, '')) AS warmup_mode_raw,
+    trim(coalesce(row.hour_limit, '')) AS hour_limit_raw,
+    trim(coalesce(row.subject_length, '')) AS subject_length_raw,
+    trim(coalesce(row.subject_with_personalization, '')) AS subject_with_personalization_raw,
+    trim(coalesce(row.subject_with_deadline, '')) AS subject_with_deadline_raw,
+    trim(coalesce(row.subject_with_emoji, '')) AS subject_with_emoji_raw,
+    trim(coalesce(row.subject_with_bonuses, '')) AS subject_with_bonuses_raw,
+    trim(coalesce(row.subject_with_discount, '')) AS subject_with_discount_raw,
+    trim(coalesce(row.subject_with_saleout, '')) AS subject_with_saleout_raw,
+    trim(coalesce(row.is_test, '')) AS is_test_raw,
+    trim(coalesce(row.position, '')) AS position_raw
+  WHERE campaign_id_raw <> '' AND campaign_type <> ''
+  WITH *,
+    campaign_id_raw + '|' + campaign_type AS campaign_key
+  MERGE (c:Campaign {campaign_key: campaign_key})
+  SET c.campaign_id = toInteger(campaign_id_raw),
+      c.campaign_type = campaign_type,
+      c.channel = CASE WHEN channel = '' THEN null ELSE channel END,
+      c.topic = CASE WHEN topic = '' THEN null ELSE topic END,
+      c.started_at = CASE WHEN started_at_raw = '' THEN null ELSE datetime(replace(started_at_raw, ' ', 'T') + 'Z') END,
+      c.finished_at = CASE WHEN finished_at_raw = '' THEN null ELSE datetime(replace(finished_at_raw, ' ', 'T') + 'Z') END,
+      c.total_count = CASE WHEN total_count_raw = '' THEN null ELSE toInteger(total_count_raw) END,
+      c.ab_test = CASE
+        WHEN toLower(ab_test_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(ab_test_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.warmup_mode = CASE
+        WHEN toLower(warmup_mode_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(warmup_mode_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.hour_limit = CASE WHEN hour_limit_raw = '' THEN null ELSE toFloat(hour_limit_raw) END,
+      c.subject_length = CASE WHEN subject_length_raw = '' THEN null ELSE toFloat(subject_length_raw) END,
+      c.subject_with_personalization = CASE
+        WHEN toLower(subject_with_personalization_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_personalization_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.subject_with_deadline = CASE
+        WHEN toLower(subject_with_deadline_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_deadline_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.subject_with_emoji = CASE
+        WHEN toLower(subject_with_emoji_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_emoji_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.subject_with_bonuses = CASE
+        WHEN toLower(subject_with_bonuses_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_bonuses_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.subject_with_discount = CASE
+        WHEN toLower(subject_with_discount_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_discount_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.subject_with_saleout = CASE
+        WHEN toLower(subject_with_saleout_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(subject_with_saleout_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.is_test = CASE
+        WHEN toLower(is_test_raw) IN ['1','t','true','yes','y'] THEN true
+        WHEN toLower(is_test_raw) IN ['0','f','false','no','n'] THEN false
+        ELSE null
+      END,
+      c.position = CASE WHEN position_raw = '' THEN null ELSE toInteger(position_raw) END
+} IN TRANSACTIONS OF __CAMPAIGN_BATCH_SIZE__ ROWS;
+
+// 4) Products and categories from events.
+CALL {
+  LOAD CSV WITH HEADERS FROM '__EVENTS_PRODUCTS_URI__' AS row
+  WITH
+    trim(coalesce(row.product_id, '')) AS product_id,
+    trim(coalesce(row.brand, '')) AS brand
+  WHERE product_id <> ''
+  MERGE (p:Product {product_id: product_id})
+  SET p.brand = CASE WHEN brand = '' THEN p.brand ELSE brand END
+} IN TRANSACTIONS OF __EVENT_BATCH_SIZE__ ROWS;
+
+CALL {
+  LOAD CSV WITH HEADERS FROM '__EVENTS_CATEGORIES_URI__' AS row
+  WITH
+    trim(coalesce(row.category_id, '')) AS category_id,
+    trim(coalesce(row.category_code, '')) AS category_code
+  WHERE category_id <> ''
+  MERGE (cat:Category {category_id: category_id})
+  SET cat.category_code = CASE WHEN category_code = '' THEN cat.category_code ELSE category_code END
+} IN TRANSACTIONS OF __EVENT_BATCH_SIZE__ ROWS;
+
+CALL {
+  LOAD CSV WITH HEADERS FROM '__EVENTS_PRODUCT_CATEGORIES_URI__' AS row
+  WITH
+    trim(coalesce(row.product_id, '')) AS product_id,
+    trim(coalesce(row.category_id, '')) AS category_id
+  WHERE product_id <> '' AND category_id <> ''
+  MATCH (p:Product {product_id: product_id})
+  MATCH (cat:Category {category_id: category_id})
+  MERGE (p)-[:IN_CATEGORY]->(cat)
+} IN TRANSACTIONS OF __EVENT_BATCH_SIZE__ ROWS;

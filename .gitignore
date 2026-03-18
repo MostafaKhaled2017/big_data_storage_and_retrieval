@@ -1,0 +1,7 @@
+venv
+*.log
+
+__pycache__
+2nexit
+report.aux
+report.toc

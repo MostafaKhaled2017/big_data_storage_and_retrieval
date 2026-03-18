@@ -1,0 +1,1927 @@
+{
+  "database": "mongodb",
+  "connection": {
+    "uri": "mongodb://localhost:27017",
+    "database": "customer_campaign_analytics"
+  },
+  "queries": {
+    "q1": {
+      "execution_time_sec": 237.08219695200023,
+      "row_count": 20,
+      "rows": [
+        {
+          "campaign_id": "33",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order pickup still pending",
+          "recipients": 297,
+          "purchasers": 7,
+          "conversion_rate_pct": 2.36,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "28",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order created",
+          "recipients": 970,
+          "purchasers": 17,
+          "conversion_rate_pct": 1.75,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "29",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order cancelled",
+          "recipients": 19840,
+          "purchasers": 342,
+          "conversion_rate_pct": 1.72,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "32",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order ready for pickup",
+          "recipients": 23293,
+          "purchasers": 356,
+          "conversion_rate_pct": 1.53,
+          "social_purchasers": 4,
+          "social_support_share_pct": 1.12
+        },
+        {
+          "campaign_id": "27",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order created",
+          "recipients": 24838,
+          "purchasers": 372,
+          "conversion_rate_pct": 1.5,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "54",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order created",
+          "recipients": 1446,
+          "purchasers": 20,
+          "conversion_rate_pct": 1.38,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "26",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order shipped",
+          "recipients": 4624,
+          "purchasers": 49,
+          "conversion_rate_pct": 1.06,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "55",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order ready for pickup",
+          "recipients": 1344,
+          "purchasers": 14,
+          "conversion_rate_pct": 1.04,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "18212",
+          "message_type": "trigger",
+          "channel": "multichannel",
+          "topic": "abandoned view",
+          "recipients": 53297,
+          "purchasers": 525,
+          "conversion_rate_pct": 0.99,
+          "social_purchasers": 2,
+          "social_support_share_pct": 0.38
+        },
+        {
+          "campaign_id": "58",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order created",
+          "recipients": 304,
+          "purchasers": 3,
+          "conversion_rate_pct": 0.99,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "18010",
+          "message_type": "trigger",
+          "channel": "multichannel",
+          "topic": "abandoned cart",
+          "recipients": 30753,
+          "purchasers": 283,
+          "conversion_rate_pct": 0.92,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "361",
+          "message_type": "bulk",
+          "channel": "email",
+          "topic": "sale out",
+          "recipients": 17271,
+          "purchasers": 154,
+          "conversion_rate_pct": 0.89,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "18223",
+          "message_type": "trigger",
+          "channel": "multichannel",
+          "topic": "added to wish list",
+          "recipients": 10421,
+          "purchasers": 87,
+          "conversion_rate_pct": 0.83,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "31",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order ready for pickup",
+          "recipients": 699,
+          "purchasers": 4,
+          "conversion_rate_pct": 0.57,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "18011",
+          "message_type": "trigger",
+          "channel": "multichannel",
+          "topic": "abandoned category",
+          "recipients": 43000,
+          "purchasers": 227,
+          "conversion_rate_pct": 0.53,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "122",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order shipped",
+          "recipients": 389,
+          "purchasers": 2,
+          "conversion_rate_pct": 0.51,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "105",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order ready for pickup",
+          "recipients": 204,
+          "purchasers": 1,
+          "conversion_rate_pct": 0.49,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "59",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "order shipped",
+          "recipients": 222,
+          "purchasers": 1,
+          "conversion_rate_pct": 0.45,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "289",
+          "message_type": "bulk",
+          "channel": "email",
+          "topic": "sale out",
+          "recipients": 17385,
+          "purchasers": 56,
+          "conversion_rate_pct": 0.32,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        },
+        {
+          "campaign_id": "179",
+          "message_type": "transactional",
+          "channel": "email",
+          "topic": "profile updated",
+          "recipients": 18707,
+          "purchasers": 56,
+          "conversion_rate_pct": 0.3,
+          "social_purchasers": 0,
+          "social_support_share_pct": 0.0
+        }
+      ]
+    },
+    "q2": {
+      "execution_time_sec": 3.4110213300000396,
+      "row_count": 140,
+      "rows": [
+        {
+          "target_user_id": "547139759",
+          "product_id": "10300499",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.scarf",
+          "brand": "silverlit",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "547139759",
+          "product_id": "12718063",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "548764434",
+          "product_id": "1005100",
+          "weighted_score": 6,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "548764434",
+          "product_id": "1004768",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "548764434",
+          "product_id": "1004659",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "548764434",
+          "product_id": "1004766",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "549032346",
+          "product_id": "100035274",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes",
+          "brand": "demi",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "549032346",
+          "product_id": "11200354",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.personal.scales",
+          "brand": "agu",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "549032346",
+          "product_id": "12600003",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.grill",
+          "brand": "maxwell",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "549032346",
+          "product_id": "12600008",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.grill",
+          "brand": "tefal",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "549032346",
+          "product_id": "2501301",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.oven",
+          "brand": "beko",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "549060190",
+          "product_id": "1004659",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "549060190",
+          "product_id": "1005159",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "549060190",
+          "product_id": "1005161",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "549060190",
+          "product_id": "23000064",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": "shell",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "549060190",
+          "product_id": "1004657",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "549117392",
+          "product_id": "1002633",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "550024230",
+          "product_id": "2701639",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.refrigerators",
+          "brand": "indesit",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "550024230",
+          "product_id": "28716534",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes",
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "550024230",
+          "product_id": "29900075",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shirt",
+          "brand": "peda",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "550024230",
+          "product_id": "55000024",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.costume",
+          "brand": "nike",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "550133755",
+          "product_id": "1005124",
+          "weighted_score": 59,
+          "interactions": 37,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "550133755",
+          "product_id": "1307051",
+          "weighted_score": 21,
+          "interactions": 15,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "550133755",
+          "product_id": "1005135",
+          "weighted_score": 20,
+          "interactions": 16,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "550133755",
+          "product_id": "1005015",
+          "weighted_score": 14,
+          "interactions": 14,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "550133755",
+          "product_id": "6301948",
+          "weighted_score": 8,
+          "interactions": 7,
+          "category_code": "electronics.camera.photo",
+          "brand": "scarlett",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "550301898",
+          "product_id": "1005105",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "550301898",
+          "product_id": "10600075",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "550301898",
+          "product_id": "26400540",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "computers.peripherals.printer",
+          "brand": null,
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "550301898",
+          "product_id": "28713721",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "apparel.shoes.keds",
+          "brand": "nike",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "550301898",
+          "product_id": "3700748",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "samsung",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "550518825",
+          "product_id": "26400756",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "computers.peripherals.printer",
+          "brand": null,
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554406713",
+          "product_id": "26402526",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554406713",
+          "product_id": "26203092",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554406713",
+          "product_id": "26203388",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554406713",
+          "product_id": "26400314",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "computers.peripherals.printer",
+          "brand": "lucente",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "554406713",
+          "product_id": "26400785",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "lucente",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "554864591",
+          "product_id": "1200957",
+          "weighted_score": 6,
+          "interactions": 6,
+          "category_code": "electronics.tablet",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554864591",
+          "product_id": "1307310",
+          "weighted_score": 6,
+          "interactions": 6,
+          "category_code": "electronics.audio.headphone",
+          "brand": "acer",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554864591",
+          "product_id": "1200947",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "electronics.tablet",
+          "brand": "samsung",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554864591",
+          "product_id": "26500125",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "kids.toys",
+          "brand": "lucente",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "554864591",
+          "product_id": "26500139",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "kids.toys",
+          "brand": "lucente",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "554876356",
+          "product_id": "1306951",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554876356",
+          "product_id": "1307050",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554876356",
+          "product_id": "1307051",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554891297",
+          "product_id": "1004873",
+          "weighted_score": 5,
+          "interactions": 5,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554891297",
+          "product_id": "1003312",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554891297",
+          "product_id": "1004739",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554891297",
+          "product_id": "1004741",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "554891297",
+          "product_id": "1004565",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "554911125",
+          "product_id": "28712416",
+          "weighted_score": 19,
+          "interactions": 14,
+          "category_code": "apparel.shoes",
+          "brand": "respect",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554911125",
+          "product_id": "1004785",
+          "weighted_score": 16,
+          "interactions": 11,
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554911125",
+          "product_id": "1002547",
+          "weighted_score": 16,
+          "interactions": 10,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554911125",
+          "product_id": "1003535",
+          "weighted_score": 14,
+          "interactions": 10,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "554911125",
+          "product_id": "28718599",
+          "weighted_score": 14,
+          "interactions": 9,
+          "category_code": null,
+          "brand": "respect",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "554932342",
+          "product_id": "12700937",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "nokian",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "554932342",
+          "product_id": "12703005",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "cordiant",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "554932342",
+          "product_id": "12703111",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "maxxis",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "554932342",
+          "product_id": "12709942",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "yokohama",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "554932342",
+          "product_id": "12711738",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "cordiant",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "555002447",
+          "product_id": "1307351",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "computers.notebook",
+          "brand": "acer",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "555002447",
+          "product_id": "1307352",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.audio.headphone",
+          "brand": "acer",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "555002447",
+          "product_id": "1306266",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.audio.headphone",
+          "brand": "hp",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "555002447",
+          "product_id": "1307240",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.audio.headphone",
+          "brand": "asus",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "555002447",
+          "product_id": "1307353",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "computers.notebook",
+          "brand": "acer",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "555060408",
+          "product_id": "3701255",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "tefal",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "555060408",
+          "product_id": "3700683",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "tefal",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "555060408",
+          "product_id": "28721444",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes.keds",
+          "brand": "anta",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "555060408",
+          "product_id": "3600661",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.washer",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "555060408",
+          "product_id": "3700748",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "samsung",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "555387842",
+          "product_id": "16800191",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "furniture.kitchen.table",
+          "brand": null,
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "555387842",
+          "product_id": "16800247",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "furniture.kitchen.table",
+          "brand": "domini",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "555873586",
+          "product_id": "5100163",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "computers.notebook",
+          "brand": "xiaomi",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "556309791",
+          "product_id": "1004856",
+          "weighted_score": 9,
+          "interactions": 5,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "558601582",
+          "product_id": "1003714",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "558601582",
+          "product_id": "1005238",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "oppo",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "558601582",
+          "product_id": "22700422",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "force",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "558721124",
+          "product_id": "1801882",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.video.tv",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "558721124",
+          "product_id": "22700462",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "bosch",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "558721124",
+          "product_id": "2900022",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "appliances.kitchen.microwave",
+          "brand": "samsung",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "558810952",
+          "product_id": "3900225",
+          "weighted_score": 6,
+          "interactions": 5,
+          "category_code": "appliances.environment.water_heater",
+          "brand": null,
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "558810952",
+          "product_id": "3900774",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "appliances.environment.water_heater",
+          "brand": "artel",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "558810952",
+          "product_id": "3900045",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.water_heater",
+          "brand": "thermex",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "558810952",
+          "product_id": "3900776",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.water_heater",
+          "brand": "artel",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "558810952",
+          "product_id": "3901026",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.water_heater",
+          "brand": "ariston",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "559030014",
+          "product_id": "1003768",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559073637",
+          "product_id": "13700160",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "erlit",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559073637",
+          "product_id": "13700233",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "erlit",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "559073637",
+          "product_id": "13700323",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "radaway",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "559073637",
+          "product_id": "4804056",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "559342465",
+          "product_id": "1306241",
+          "weighted_score": 5,
+          "interactions": 5,
+          "category_code": "computers.notebook",
+          "brand": "hp",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559419308",
+          "product_id": "28715745",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "apparel.shoes.keds",
+          "brand": "escan",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559419308",
+          "product_id": "28717682",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "apparel.shoes.keds",
+          "brand": "greyder",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "559419308",
+          "product_id": "28713987",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes.keds",
+          "brand": null,
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "559419308",
+          "product_id": "28715121",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes.keds",
+          "brand": "baden",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "559419308",
+          "product_id": "28715684",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "apparel.shoes",
+          "brand": "greyder",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "559696962",
+          "product_id": "22700068",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "force",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559696962",
+          "product_id": "22700524",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "force",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "559776737",
+          "product_id": "1003306",
+          "weighted_score": 10,
+          "interactions": 10,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "559776737",
+          "product_id": "1004833",
+          "weighted_score": 7,
+          "interactions": 7,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "559776737",
+          "product_id": "1005100",
+          "weighted_score": 7,
+          "interactions": 7,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "559776737",
+          "product_id": "1004462",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "559776737",
+          "product_id": "1004767",
+          "weighted_score": 4,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "560050222",
+          "product_id": "1005021",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "oppo",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "561174161",
+          "product_id": "12702129",
+          "weighted_score": 10,
+          "interactions": 8,
+          "category_code": null,
+          "brand": "bridgestone",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "561174161",
+          "product_id": "12706673",
+          "weighted_score": 5,
+          "interactions": 5,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "561174161",
+          "product_id": "12708386",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "561174161",
+          "product_id": "12702981",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "561174161",
+          "product_id": "13102334",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": "kipardo",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "561966331",
+          "product_id": "1002628",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "561966331",
+          "product_id": "1003310",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "561966331",
+          "product_id": "1003800",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "561966331",
+          "product_id": "1004249",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "562044775",
+          "product_id": "31800001",
+          "weighted_score": 31,
+          "interactions": 23,
+          "category_code": "construction.tools.saw",
+          "brand": "renegade",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "562044775",
+          "product_id": "1005106",
+          "weighted_score": 17,
+          "interactions": 12,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "562044775",
+          "product_id": "1005105",
+          "weighted_score": 11,
+          "interactions": 9,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "562044775",
+          "product_id": "1004767",
+          "weighted_score": 7,
+          "interactions": 4,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "562044775",
+          "product_id": "3701056",
+          "weighted_score": 7,
+          "interactions": 4,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "samsung",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "562121103",
+          "product_id": "7800012",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "philips",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "563680797",
+          "product_id": "1002544",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "563680797",
+          "product_id": "1004856",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "563680797",
+          "product_id": "3701244",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "elenberg",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "563680797",
+          "product_id": "3700766",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "563680797",
+          "product_id": "3701134",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "appliances.environment.vacuum",
+          "brand": "bosch",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "563889964",
+          "product_id": "1004856",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "563889964",
+          "product_id": "1004565",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "563889964",
+          "product_id": "1004833",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "563889964",
+          "product_id": "1005073",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "563948590",
+          "product_id": "28712327",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "apparel.shoes",
+          "brand": "baden",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "563948590",
+          "product_id": "36600037",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": null,
+          "brand": null,
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "563948590",
+          "product_id": "36600091",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "apparel.shoes",
+          "brand": null,
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "563948590",
+          "product_id": "1304297",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.audio.headphone",
+          "brand": "apple",
+          "rank_in_user": 4
+        },
+        {
+          "target_user_id": "563948590",
+          "product_id": "28712097",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "apparel.shoes",
+          "brand": "rieker",
+          "rank_in_user": 5
+        },
+        {
+          "target_user_id": "563975432",
+          "product_id": "1480733",
+          "weighted_score": 3,
+          "interactions": 3,
+          "category_code": "computers.desktop",
+          "brand": "pulser",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "564255596",
+          "product_id": "12706259",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "nokian",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "564352857",
+          "product_id": "1004386",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.smartphone",
+          "brand": "oppo",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "564698857",
+          "product_id": "4804660",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": "electronics.audio.headphone",
+          "brand": "xiaomi",
+          "rank_in_user": 1
+        },
+        {
+          "target_user_id": "564698857",
+          "product_id": "5500207",
+          "weighted_score": 2,
+          "interactions": 2,
+          "category_code": null,
+          "brand": "vitek",
+          "rank_in_user": 2
+        },
+        {
+          "target_user_id": "564698857",
+          "product_id": "5500105",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "vitek",
+          "rank_in_user": 3
+        },
+        {
+          "target_user_id": "564698857",
+          "product_id": "5500264",
+          "weighted_score": 1,
+          "interactions": 1,
+          "category_code": null,
+          "brand": "bene",
+          "rank_in_user": 4
+        }
+      ]
+    },
+    "q3": {
+      "execution_time_sec": 0.49707414000022254,
+      "row_count": 60,
+      "rows": [
+        {
+          "keyword": "appliances",
+          "product_id": "13100054",
+          "category_code": "appliances.ironing_board",
+          "brand": "skad",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "13100965",
+          "category_code": "appliances.ironing_board",
+          "brand": "skad",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "13101463",
+          "category_code": "appliances.ironing_board",
+          "brand": "skad",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "19300006",
+          "category_code": "appliances.ironing_board",
+          "brand": "perilla",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "19300014",
+          "category_code": "appliances.ironing_board",
+          "brand": "perilla",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "19300026",
+          "category_code": "appliances.ironing_board",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "19300096",
+          "category_code": "appliances.ironing_board",
+          "brand": "nika",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "3800717",
+          "category_code": "appliances.iron",
+          "brand": "polaris",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "3800996",
+          "category_code": "appliances.iron",
+          "brand": "braun",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "3801255",
+          "category_code": "appliances.iron",
+          "brand": "willmark",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000005",
+          "category_code": "appliances.sewing_machine",
+          "brand": "brother",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000030",
+          "category_code": "appliances.sewing_machine",
+          "brand": "jaguar",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000175",
+          "category_code": "appliances.sewing_machine",
+          "brand": "brother",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000248",
+          "category_code": "appliances.sewing_machine",
+          "brand": "brother",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000310",
+          "category_code": "appliances.sewing_machine",
+          "brand": "brother",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000401",
+          "category_code": "appliances.sewing_machine",
+          "brand": "janome",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000492",
+          "category_code": "appliances.sewing_machine",
+          "brand": "brother",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000650",
+          "category_code": "appliances.sewing_machine",
+          "brand": "juki",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000703",
+          "category_code": "appliances.sewing_machine",
+          "brand": "chayka",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "appliances",
+          "product_id": "5000731",
+          "category_code": "appliances.sewing_machine",
+          "brand": "janome",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "100003433",
+          "category_code": "electronics.clocks",
+          "brand": "armani",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "1003315",
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "1004733",
+          "category_code": "electronics.smartphone",
+          "brand": "sony",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "1201216",
+          "category_code": "electronics.tablet",
+          "brand": "lenovo",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21400093",
+          "category_code": "electronics.clocks",
+          "brand": "boccia",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21401326",
+          "category_code": "electronics.clocks",
+          "brand": "casio",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21401462",
+          "category_code": "electronics.clocks",
+          "brand": "casio",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21403426",
+          "category_code": "electronics.clocks",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21404340",
+          "category_code": "electronics.clocks",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21405244",
+          "category_code": "electronics.clocks",
+          "brand": "armani",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21405376",
+          "category_code": "electronics.clocks",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21405494",
+          "category_code": "electronics.clocks",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21407411",
+          "category_code": "electronics.clocks",
+          "brand": "tissot",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21408238",
+          "category_code": "electronics.clocks",
+          "brand": "tissot",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21408491",
+          "category_code": "electronics.clocks",
+          "brand": null,
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21411792",
+          "category_code": "electronics.clocks",
+          "brand": "tissot",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "21411976",
+          "category_code": "electronics.clocks",
+          "brand": "casio",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "5100892",
+          "category_code": "electronics.clocks",
+          "brand": "garmin",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "8800564",
+          "category_code": "electronics.telephone",
+          "brand": "maxvi",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "electronics",
+          "product_id": "8800949",
+          "category_code": "electronics.telephone",
+          "brand": "bq",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1002522",
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1002548",
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1003293",
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1003461",
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1003503",
+          "category_code": "electronics.smartphone",
+          "brand": "vertex",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1003524",
+          "category_code": "electronics.smartphone",
+          "brand": "huawei",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1003712",
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004276",
+          "category_code": "electronics.smartphone",
+          "brand": "bq",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004279",
+          "category_code": "electronics.smartphone",
+          "brand": "bq",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004284",
+          "category_code": "electronics.smartphone",
+          "brand": "bq",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004363",
+          "category_code": "electronics.smartphone",
+          "brand": "apple",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004497",
+          "category_code": "electronics.smartphone",
+          "brand": "nokia",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004593",
+          "category_code": "electronics.smartphone",
+          "brand": "irbis",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004728",
+          "category_code": "electronics.smartphone",
+          "brand": "sony",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004807",
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1004961",
+          "category_code": "electronics.smartphone",
+          "brand": "oppo",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1005014",
+          "category_code": "electronics.smartphone",
+          "brand": "samsung",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1005033",
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1005092",
+          "category_code": "electronics.smartphone",
+          "brand": "tecno",
+          "text_score": 0.75
+        },
+        {
+          "keyword": "smartphone",
+          "product_id": "1005166",
+          "category_code": "electronics.smartphone",
+          "brand": "xiaomi",
+          "text_score": 0.75
+        }
+      ]
+    }
+  }
+}
